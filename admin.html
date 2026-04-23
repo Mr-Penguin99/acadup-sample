@@ -275,7 +275,7 @@
                     <td style={{ padding:"11px 14px" }}>{a.terminal ? <Badge label="신청완료" color={BLUE} /> : <Badge label="미신청" color="#aaa" />}</td>
                     <td style={{ padding:"11px 14px", color: a.login==="14일전"?RED:a.login==="7일전"?ORANGE:"#555" }}>{a.login}</td>
                     <td style={{ padding:"11px 14px" }}>
-                      <div style={{ display:"flex", gap:4" }}>
+                      <div style={{ display:"flex", gap:4 }}>
                         <button onClick={e=>{e.stopPropagation();}} style={{ padding:"3px 8px", background:ORANGE, color:"#fff", border:"none", borderRadius:4, fontSize:10, cursor:"pointer" }}>알림톡</button>
                         {a.status==="체험" && <button onClick={e=>{e.stopPropagation();}} style={{ padding:"3px 8px", background:TEAL, color:"#fff", border:"none", borderRadius:4, fontSize:10, cursor:"pointer" }}>전환유도</button>}
                       </div>
