@@ -718,7 +718,7 @@
               </div>
             </div>
             {/* 신청 링크 */}
-            <div style={{ background:"#F0F7FF", border:"1px solid #C8E0F7", borderRadius:8, padding:"14px 16px", marginBottom:16, display:"flex", alignItems:"center", gap:10 }}>
+            <div style={{ background:"#F0F7FF", border:"1px solid #C8E0F7", borderRadius:8, padding:"14px 16px", marginBottom:12, display:"flex", alignItems:"center", gap:10 }}>
               <span style={{ fontSize:20 }}>📋</span>
               <div style={{ flex:1 }}>
                 <div style={{ fontSize:12, fontWeight:700, color:"#333", marginBottom:2 }}>비대면결제 서비스 신청서</div>
@@ -730,10 +730,15 @@
               </div>
               {linkClicked && <span style={{ fontSize:11, color:"#2CBB6A", fontWeight:700 }}>✅ 완료</span>}
             </div>
-            {linkClicked && (
-              <button onClick={()=>go(10)} style={{ width:"100%", padding:"12px 0", background:"#378ADD", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:"pointer", marginBottom:8 }}>비대면결제 신청 완료하기</button>
-            )}
-            <div style={{ textAlign:"center", marginTop: linkClicked ? 6 : 0 }}>
+            <div style={{ textAlign:"center", fontSize:11, color:"#aaa", marginBottom:8 }}>
+              비대면결제 신청 후 완료버튼을 눌러주세요.
+            </div>
+            <button
+              onClick={()=>linkClicked&&go(10)}
+              style={{ width:"100%", padding:"12px 0", background:linkClicked?"#378ADD":"#C8D8E8", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:linkClicked?"pointer":"not-allowed", marginBottom:8, transition:"background 0.2s" }}>
+              비대면결제 신청 완료하기
+            </button>
+            <div style={{ textAlign:"center" }}>
               <span onClick={()=>go(10)} style={{ fontSize:12, color:"#aaa", cursor:"pointer", textDecoration:"underline" }}>건너뛰기 — 단말기 신청으로 이동 →</span>
             </div>
           </div>
