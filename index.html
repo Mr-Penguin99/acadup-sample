@@ -205,25 +205,118 @@
 
     /* ── S3 휴대폰인증 ── */
     const S3 = ({ go }) => {
+      const [phone, setPhone] = useState("");
+      const [scenario, setScenario] = useState(null); // null | "normal" | "recoverable" | "deleted"
       const [sent, setSent] = useState(false);
       const [otp, setOtp] = useState("");
       const [timer, setTimer] = useState(180);
       const [ok, setOk] = useState(false);
+
       useEffect(() => {
         if (sent && timer > 0 && !ok) { const t=setTimeout(()=>setTimer(s=>s-1),1000); return ()=>clearTimeout(t); }
       }, [sent, timer, ok]);
       const fmt = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+      const handleSend = () => {
+        const p = phone.replace(/-/g,"");
+        if(p==="01011111111") { setScenario("recoverable"); return; }
+        if(p==="01022222222") { setScenario("deleted"); return; }
+        setScenario("normal");
+        setSent(true);
+      };
+
+      // ── 이탈 이력 감지: 데이터 복구 가능 ──
+      if(scenario==="recoverable") return (
+        <div style={{ minHeight:"100vh", background:LIGHT_BG, display:"flex", flexDirection:"column", alignItems:"center", padding:"32px 16px" }}>
+          <Logo /><div style={{ fontSize:13, color:"#666", margin:"12px 0 20px", fontWeight:500 }}>이용 가입신청</div>
+          <StepBar current={3} steps={["약관동의","정보입력","인증완료"]} />
+          <div style={{ background:"#fff", borderRadius:8, border:"1px solid #e5e5e5", width:"100%", maxWidth:440, padding:24 }}>
+            <div style={{ fontSize:16, marginBottom:12 }}>🔍</div>
+            <div style={{ fontSize:15, fontWeight:700, marginBottom:6 }}>이전 이용 이력이 확인됩니다</div>
+            <div style={{ fontSize:12, color:"#888", marginBottom:20, lineHeight:1.7 }}>입력하신 번호로 아카데미업을 사용하신 이력이 있습니다.</div>
+            <div style={{ background:"#E8F8F2", border:"1px solid #A8DFC4", borderRadius:8, padding:"14px 16px", marginBottom:20 }}>
+              <div style={{ fontSize:12, fontWeight:700, color:"#2CBB6A", marginBottom:6 }}>✅ 기존 데이터 복구 가능</div>
+              <div style={{ fontSize:11, color:"#555", lineHeight:1.8 }}>
+                기존에 사용하시던 데이터가 보관되어 있어 복구가 가능합니다.<br/>
+                고객센터로 문의하시면 데이터를 복구한 후 이용하실 수 있습니다.
+              </div>
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+              <button onClick={()=>go(3)} style={{ width:"100%", padding:"11px 0", background:ORANGE, color:"#fff", border:"none", borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>신규로 가입하기</button>
+              <button style={{ width:"100%", padding:"11px 0", background:"#fff", color:TEAL, border:`1.5px solid ${TEAL}`, borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>📞 고객센터 문의</button>
+            </div>
+            <div style={{ textAlign:"center", marginTop:12 }}>
+              <span onClick={()=>{setScenario(null);setPhone("");}} style={{ fontSize:11, color:"#aaa", cursor:"pointer", textDecoration:"underline" }}>← 다른 번호로 다시 시도</span>
+            </div>
+          </div>
+        </div>
+      );
+
+      // ── 이탈 이력 감지: 데이터 파기 완료 ──
+      if(scenario==="deleted") return (
+        <div style={{ minHeight:"100vh", background:LIGHT_BG, display:"flex", flexDirection:"column", alignItems:"center", padding:"32px 16px" }}>
+          <Logo /><div style={{ fontSize:13, color:"#666", margin:"12px 0 20px", fontWeight:500 }}>이용 가입신청</div>
+          <StepBar current={3} steps={["약관동의","정보입력","인증완료"]} />
+          <div style={{ background:"#fff", borderRadius:8, border:"1px solid #e5e5e5", width:"100%", maxWidth:440, padding:24 }}>
+            <div style={{ fontSize:16, marginBottom:12 }}>🔍</div>
+            <div style={{ fontSize:15, fontWeight:700, marginBottom:6 }}>이전 이용 이력이 확인됩니다</div>
+            <div style={{ fontSize:12, color:"#888", marginBottom:20, lineHeight:1.7 }}>입력하신 번호로 아카데미업을 사용하신 이력이 있습니다.</div>
+            <div style={{ background:"#FFF5F5", border:"1px solid #F0C4C4", borderRadius:8, padding:"14px 16px", marginBottom:20 }}>
+              <div style={{ fontSize:12, fontWeight:700, color:"#E8445A", marginBottom:6 }}>⚠️ 기존 데이터 복구 불가</div>
+              <div style={{ fontSize:11, color:"#555", lineHeight:1.8 }}>
+                데이터 보관 기간이 경과하여 기존 데이터는 복구가 어렵습니다.<br/>
+                신규로 다시 가입하여 새롭게 시작하실 수 있습니다.
+              </div>
+            </div>
+            <div style={{ background:"#F8F9FA", borderRadius:6, padding:"10px 14px", marginBottom:16, fontSize:11, color:"#888", lineHeight:1.7 }}>
+              💡 처음 가입하시는 것처럼 동일하게 진행됩니다.<br/>
+              가입 후 초기 설정이 필요하시면 고객센터에서 도움드릴 수 있습니다.
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+              <button onClick={()=>go(3)} style={{ width:"100%", padding:"11px 0", background:ORANGE, color:"#fff", border:"none", borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>신규로 가입하기</button>
+              <button style={{ width:"100%", padding:"11px 0", background:"#fff", color:TEAL, border:`1.5px solid ${TEAL}`, borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>📞 고객센터 문의</button>
+            </div>
+            <div style={{ textAlign:"center", marginTop:12 }}>
+              <span onClick={()=>{setScenario(null);setPhone("");}} style={{ fontSize:11, color:"#aaa", cursor:"pointer", textDecoration:"underline" }}>← 다른 번호로 다시 시도</span>
+            </div>
+          </div>
+        </div>
+      );
+
+      // ── 일반 인증 흐름 ──
       return (
         <div style={{ minHeight:"100vh", background:LIGHT_BG, display:"flex", flexDirection:"column", alignItems:"center", padding:"32px 16px" }}>
           <Logo /><div style={{ fontSize:13, color:"#666", margin:"12px 0 20px", fontWeight:500 }}>이용 가입신청</div>
           <StepBar current={3} steps={["약관동의","정보입력","인증완료"]} />
           <div style={{ background:"#fff", borderRadius:8, border:"1px solid #e5e5e5", width:"100%", maxWidth:440, padding:24 }}>
             <div style={{ fontSize:15, fontWeight:700, marginBottom:4 }}>휴대폰 본인인증</div>
-            <div style={{ fontSize:11, color:"#888", marginBottom:16 }}>동일 번호 중복 가입은 자동 차단됩니다.</div>
-            <div style={{ background:"#F8F9FA", borderRadius:6, padding:"10px 14px", marginBottom:16, fontSize:12 }}>인증번호 수신: <strong>010-1234-5678</strong></div>
-            {!sent ? (
-              <button onClick={()=>setSent(true)} style={{ width:"100%", padding:"11px 0", background:TEAL, color:"#fff", border:"none", borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>인증번호 발송</button>
-            ) : (
+            <div style={{ fontSize:11, color:"#888", marginBottom:16 }}>가입 시 입력한 대표자 휴대폰으로 인증합니다.</div>
+
+            {/* 번호 입력 */}
+            <div style={{ marginBottom:12 }}>
+              <label style={{ fontSize:12, fontWeight:600, color:"#444", display:"block", marginBottom:5 }}>휴대폰 번호</label>
+              <div style={{ display:"flex", gap:8 }}>
+                <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="010-0000-0000"
+                  disabled={sent}
+                  style={{ flex:1, padding:"10px 11px", border:"1px solid #ddd", borderRadius:6, fontSize:13, outline:"none", background:sent?"#f5f5f5":"#fff" }}/>
+                {!sent && (
+                  <button onClick={handleSend} disabled={!phone}
+                    style={{ padding:"0 14px", background:phone?TEAL:"#ccc", color:"#fff", border:"none", borderRadius:6, fontSize:12, fontWeight:700, cursor:phone?"pointer":"not-allowed" }}>
+                    인증번호 발송
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* 테스트 시나리오 안내 */}
+            <div style={{ background:"#F0F7FF", border:"1px solid #C8E0F7", borderRadius:6, padding:"10px 14px", marginBottom:16, fontSize:11, color:"#555", lineHeight:1.8 }}>
+              <div style={{ fontWeight:700, color:BLUE, marginBottom:4 }}>📋 테스트 시나리오 번호</div>
+              <div><span style={{ fontWeight:600 }}>010-0000-0000</span> — 일반 신규 가입</div>
+              <div><span style={{ fontWeight:600 }}>010-1111-1111</span> — 이탈 이력 + 데이터 복구 가능</div>
+              <div><span style={{ fontWeight:600 }}>010-2222-2222</span> — 이탈 이력 + 데이터 파기 완료</div>
+            </div>
+
+            {sent && (
               <>
                 <div style={{ display:"flex", gap:8, marginBottom:8 }}>
                   <div style={{ position:"relative", flex:1 }}>
@@ -237,7 +330,7 @@
                 {ok && <div style={{ background:"#E8F8F2", border:"1px solid #A8DFC4", borderRadius:6, padding:"10px 14px", fontSize:12, color:"#2CBB6A", fontWeight:600, marginBottom:12 }}>✅ 인증 완료!</div>}
               </>
             )}
-            <button onClick={()=>ok&&go(3)} style={{ width:"100%", padding:"12px 0", background:ok?ORANGE:"#ccc", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:ok?"pointer":"not-allowed", marginTop:10 }}>체험 계정 발급받기</button>
+            <button onClick={()=>ok&&go(3)} style={{ width:"100%", padding:"12px 0", background:ok?ORANGE:"#ccc", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:ok?"pointer":"not-allowed", marginTop:4 }}>체험 계정 발급받기</button>
           </div>
         </div>
       );
