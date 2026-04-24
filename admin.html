@@ -23,16 +23,16 @@
     const ORANGE="#F5841F", TEAL="#17B8B8", DARK="#1E2235", RED="#E8445A", GREEN="#2CBB6A", BLUE="#378ADD";
 
     const ACADEMIES = [
-      {id:1,name:"장상미영어학원",owner:"장상미",phone:"010-1234-5678",region:"대구",joinDate:"2026-04-23",status:"정식",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"오늘"},
-      {id:2,name:"수학의정석학원",owner:"김정석",phone:"010-2345-6789",region:"대전",joinDate:"2026-04-22",status:"체험",trial_d:6,pay:null,terminal:null,login:"오늘"},
-      {id:3,name:"영재수학학원",owner:"이영재",phone:"010-3456-7890",region:"서울",joinDate:"2026-04-21",status:"체험",trial_d:5,pay:null,terminal:null,login:"어제"},
-      {id:4,name:"한빛국어학원",owner:"박한빛",phone:"010-4567-8901",region:"대구",joinDate:"2026-04-20",status:"체험",trial_d:4,pay:"심사중",terminal:null,login:"2일전"},
-      {id:5,name:"하늘피아노학원",owner:"최하늘",phone:"010-5678-9012",region:"전주",joinDate:"2026-04-19",status:"체험",trial_d:3,pay:null,terminal:null,login:"3일전"},
-      {id:6,name:"미래과학학원",owner:"정미래",phone:"010-6789-0123",region:"대전",joinDate:"2026-04-18",status:"체험",trial_d:2,pay:null,terminal:null,login:"오늘"},
-      {id:7,name:"청운중학교보습",owner:"한청운",phone:"010-7890-1234",region:"대구",joinDate:"2026-04-17",status:"체험",trial_d:1,pay:null,terminal:"일정조율",login:"5일전"},
-      {id:8,name:"두뇌개발학원",owner:"오두뇌",phone:"010-8901-2345",region:"서울",joinDate:"2026-04-16",status:"만료",trial_d:0,pay:null,terminal:null,login:"7일전"},
-      {id:9,name:"글로벌영어학원",owner:"서글로",phone:"010-9012-3456",region:"부산",joinDate:"2026-04-15",status:"정식",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"오늘"},
-      {id:10,name:"탑수학학원",owner:"윤탑수",phone:"010-0123-4567",region:"대전",joinDate:"2026-04-14",status:"이탈",trial_d:null,pay:null,terminal:null,login:"14일전"},
+      {id:1,name:"장상미영어학원",owner:"장상미",phone:"010-1234-5678",region:"대구",joinDate:"2026-04-23",status:"정식",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"오늘",route:"연합회",routeDetail:"대구"},
+      {id:2,name:"수학의정석학원",owner:"김정석",phone:"010-2345-6789",region:"대전",joinDate:"2026-04-22",status:"체험",trial_d:6,pay:null,terminal:null,login:"오늘",route:"연합회",routeDetail:"대전"},
+      {id:3,name:"영재수학학원",owner:"이영재",phone:"010-3456-7890",region:"서울",joinDate:"2026-04-21",status:"체험",trial_d:5,pay:null,terminal:null,login:"어제",route:"검색",routeDetail:null},
+      {id:4,name:"한빛국어학원",owner:"박한빛",phone:"010-4567-8901",region:"대구",joinDate:"2026-04-20",status:"체험",trial_d:4,pay:"심사중",terminal:null,login:"2일전",route:"연합회",routeDetail:"대구"},
+      {id:5,name:"하늘피아노학원",owner:"최하늘",phone:"010-5678-9012",region:"전주",joinDate:"2026-04-19",status:"체험",trial_d:3,pay:null,terminal:null,login:"3일전",route:"SNS",routeDetail:null},
+      {id:6,name:"미래과학학원",owner:"정미래",phone:"010-6789-0123",region:"대전",joinDate:"2026-04-18",status:"체험",trial_d:2,pay:null,terminal:null,login:"오늘",route:"연합회",routeDetail:"대전"},
+      {id:7,name:"청운중학교보습",owner:"한청운",phone:"010-7890-1234",region:"대구",joinDate:"2026-04-17",status:"체험",trial_d:1,pay:null,terminal:"일정조율",login:"5일전",route:"지인추천",routeDetail:null},
+      {id:8,name:"두뇌개발학원",owner:"오두뇌",phone:"010-8901-2345",region:"서울",joinDate:"2026-04-16",status:"만료",trial_d:0,pay:null,terminal:null,login:"7일전",route:"기타",routeDetail:null},
+      {id:9,name:"글로벌영어학원",owner:"서글로",phone:"010-9012-3456",region:"부산",joinDate:"2026-04-15",status:"정식",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"오늘",route:"검색",routeDetail:null},
+      {id:10,name:"탑수학학원",owner:"윤탑수",phone:"010-0123-4567",region:"대전",joinDate:"2026-04-14",status:"이탈",trial_d:null,pay:null,terminal:null,login:"14일전",route:"연합회",routeDetail:"대전"},
     ];
     const PAY_APPS = [
       {id:1,academy:"한빛국어학원",owner:"박한빛",phone:"010-4567-8901",region:"대구",applyDate:"2026-04-20",status:"심사중"},
@@ -110,7 +110,7 @@
     const TopNav = ({menu,setMenu,onLogout}) => {
       const items=[
         {key:"dashboard",label:"대시보드"},
-        {key:"academies",label:"신규 가입 학원",badge:10},
+        {key:"academies",label:"가입 학원",badge:10},
         {key:"payment",label:"비대면결제 접수",badge:1},
         {key:"terminal",label:"단말기 신청 현황",badge:1},
         {key:"alimtalk",label:"알림톡 발송 현황"},
@@ -158,7 +158,7 @@
         {type:"danger",msg:"장기 미접속",detail:"탑수학학원 — 14일째 미접속 (이탈 위험)",action:"연락하기"},
       ];
       const sections = [
-        {key:"academies",title:"신규 가입 학원",icon:"🏫",
+        {key:"academies",title:"가입 학원",icon:"🏫",
           rows:ACADEMIES.slice(0,4).map(a=>({label:a.name,sub:a.region,badge:statusBadge(a.status,a.trial_d)}))},
         {key:"payment",title:"비대면결제 접수",icon:"💳",
           rows:PAY_APPS.map(a=>({label:a.academy,sub:a.applyDate,badge:payBadge(a.status)}))},
@@ -234,40 +234,98 @@
       );
     };
 
+    const routeBadge = (route, detail) => {
+      if(route==="연합회") return <Badge label={`연합회-${detail}`} color="#7F77DD"/>;
+      if(route==="검색") return <Badge label="검색" color={BLUE}/>;
+      if(route==="SNS") return <Badge label="SNS" color="#E91E8C"/>;
+      if(route==="지인추천") return <Badge label="지인추천" color={GREEN}/>;
+      if(route==="기타") return <Badge label="기타" color="#888"/>;
+      return <Badge label="미입력" color="#ccc"/>;
+    };
+
     const Academies = () => {
       const [filter,setFilter]=useState("전체");
+      const [routeFilter,setRouteFilter]=useState("전체");
       const [search,setSearch]=useState("");
       const [selected,setSelected]=useState(null);
-      const filters=["전체","체험","정식","만료","이탈"];
-      const filtered=ACADEMIES.filter(a=>(filter==="전체"||a.status===filter)&&(a.name.includes(search)||a.owner.includes(search)||a.region.includes(search)));
+      const statusFilters=["전체","체험","정식","만료","이탈"];
+
+      const filtered=ACADEMIES.filter(a=>{
+        const statusOk = filter==="전체" || a.status===filter;
+        const routeOk = routeFilter==="전체" || routeFilter==="연합회"
+          ? (routeFilter==="전체" ? true : a.route==="연합회")
+          : a.route===routeFilter;
+        const regionDetailOk = true; // 세부 지역은 별도 처리
+        const searchOk = a.name.includes(search)||a.owner.includes(search)||a.region.includes(search);
+        return statusOk && routeOk && searchOk;
+      });
+
+      // 연합회 세부 지역 필터
+      const [unionRegion,setUnionRegion]=useState("전체");
+      const finalFiltered = routeFilter==="연합회"
+        ? filtered.filter(a=>unionRegion==="전체"||a.routeDetail===unionRegion)
+        : filtered;
+
+      const routeFilters=["전체","연합회","검색","SNS","지인추천","기타"];
+      const routeColors={"전체":"#555","연합회":"#7F77DD","검색":BLUE,"SNS":"#E91E8C","지인추천":GREEN,"기타":"#888"};
+
       return (
         <div style={{padding:24}}>
-          <div style={{fontSize:18,fontWeight:700,marginBottom:4}}>신규 가입 학원</div>
+          <div style={{fontSize:18,fontWeight:700,marginBottom:4}}>가입 학원</div>
           <div style={{fontSize:12,color:"#888",marginBottom:20}}>전체 가입 학원 현황 및 전환 관리</div>
-          <div style={{display:"flex",gap:8,marginBottom:16,alignItems:"center"}}>
-            {filters.map(f=>(
+
+          {/* 상태 필터 */}
+          <div style={{display:"flex",gap:8,marginBottom:10,alignItems:"center"}}>
+            {statusFilters.map(f=>(
               <button key={f} onClick={()=>setFilter(f)}
                 style={{padding:"6px 14px",border:`1.5px solid ${filter===f?ORANGE:"#ddd"}`,borderRadius:20,background:filter===f?"#FFF9F3":"#fff",color:filter===f?ORANGE:"#666",fontSize:12,fontWeight:filter===f?700:400,cursor:"pointer"}}>{f}</button>
             ))}
             <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="학원명 / 원장명 / 지역 검색"
               style={{marginLeft:"auto",padding:"7px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:12,width:220,outline:"none"}}/>
           </div>
+
+          {/* 가입경로 필터 */}
+          <div style={{display:"flex",gap:8,marginBottom:routeFilter==="연합회"?8:16,alignItems:"center"}}>
+            <span style={{fontSize:11,color:"#888",marginRight:2,flexShrink:0}}>가입경로</span>
+            {routeFilters.map(r=>(
+              <button key={r} onClick={()=>{setRouteFilter(r);setUnionRegion("전체");}}
+                style={{padding:"5px 12px",border:`1.5px solid ${routeFilter===r?routeColors[r]:"#ddd"}`,borderRadius:20,background:routeFilter===r?`${routeColors[r]}15`:"#fff",color:routeFilter===r?routeColors[r]:"#888",fontSize:11,fontWeight:routeFilter===r?700:400,cursor:"pointer"}}>
+                {r}{r==="연합회"&&<span style={{fontSize:10,marginLeft:3}}>({ACADEMIES.filter(a=>a.route==="연합회").length})</span>}
+              </button>
+            ))}
+          </div>
+
+          {/* 연합회 지역 세부 필터 */}
+          {routeFilter==="연합회"&&(
+            <div style={{display:"flex",gap:8,marginBottom:16,padding:"10px 14px",background:"#F3F1FF",borderRadius:8,border:"1px solid #D4CEFF",alignItems:"center"}}>
+              <span style={{fontSize:11,color:"#7F77DD",fontWeight:700,flexShrink:0}}>🏛️ 연합회 지역</span>
+              {["전체","대전","대구"].map(r=>(
+                <button key={r} onClick={()=>setUnionRegion(r)}
+                  style={{padding:"4px 12px",border:`1.5px solid ${unionRegion===r?"#7F77DD":"#C4BCEE"}`,borderRadius:16,background:unionRegion===r?"#7F77DD":"#fff",color:unionRegion===r?"#fff":"#7F77DD",fontSize:11,fontWeight:unionRegion===r?700:400,cursor:"pointer"}}>
+                  {r}{r!=="전체"&&<span style={{fontSize:10,marginLeft:2}}>({ACADEMIES.filter(a=>a.route==="연합회"&&a.routeDetail===r).length})</span>}
+                </button>
+              ))}
+              <span style={{fontSize:10,color:"#999",marginLeft:4}}>총 {ACADEMIES.filter(a=>a.route==="연합회").length}개 연합회 학원</span>
+            </div>
+          )}
+
           <div style={{background:"#fff",borderRadius:10,border:"1px solid #e5e5e5",overflow:"hidden"}}>
             <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
               <thead>
                 <tr style={{background:"#F8F9FA",borderBottom:"2px solid #e5e5e5"}}>
-                  {["학원명","원장","지역","가입일","상태","비대면결제","단말기","최근접속","액션"].map(h=>(
+                  {["학원명","원장","지역","가입경로","가입일","상태","비대면결제","단말기","최근접속","액션"].map(h=>(
                     <th key={h} style={{padding:"11px 14px",textAlign:"left",color:"#555",fontWeight:700,whiteSpace:"nowrap"}}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {filtered.map(a=>(
+                {finalFiltered.map(a=>(
                   <tr key={a.id} onClick={()=>setSelected(selected?.id===a.id?null:a)}
                     style={{borderBottom:"1px solid #f0f0f0",background:selected?.id===a.id?"#FFF9F3":"#fff",cursor:"pointer"}}>
                     <td style={{padding:"11px 14px",fontWeight:600,color:DARK}}>{a.name}</td>
                     <td style={{padding:"11px 14px",color:"#555"}}>{a.owner}</td>
                     <td style={{padding:"11px 14px",color:"#555"}}>{a.region}</td>
+                    <td style={{padding:"11px 14px"}}>{routeBadge(a.route,a.routeDetail)}</td>
                     <td style={{padding:"11px 14px",color:"#888"}}>{a.joinDate}</td>
                     <td style={{padding:"11px 14px"}}>{statusBadge(a.status,a.trial_d)}</td>
                     <td style={{padding:"11px 14px"}}>{payBadge(a.pay)}</td>
@@ -291,10 +349,10 @@
                 <button onClick={()=>setSelected(null)} style={{background:"none",border:"none",fontSize:18,cursor:"pointer",color:"#888"}}>✕</button>
               </div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:16}}>
-                {[["원장명",selected.owner],["연락처",selected.phone],["지역",selected.region],["가입일",selected.joinDate],["계정상태",selected.status+(selected.trial_d!=null?` (D-${selected.trial_d})`:"")] ,["비대면결제",selected.pay||"미신청"],["단말기",selected.terminal||"미신청"],["최근접속",selected.login]].map(([l,v])=>(
+                {[["원장명",selected.owner],["연락처",selected.phone],["지역",selected.region],["가입경로",selected.route+(selected.routeDetail?` (${selected.routeDetail})`:"")] ,["가입일",selected.joinDate],["계정상태",selected.status+(selected.trial_d!=null?` (D-${selected.trial_d})`:"")] ,["비대면결제",selected.pay||"미신청"],["단말기",selected.terminal||"미신청"],["최근접속",selected.login]].map(([l,v])=>(
                   <div key={l} style={{background:"#F8F9FA",borderRadius:6,padding:"10px 14px"}}>
                     <div style={{fontSize:10,color:"#888",marginBottom:3}}>{l}</div>
-                    <div style={{fontSize:13,fontWeight:600}}>{v}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:l==="가입경로"&&selected.route==="연합회"?"#7F77DD":"#333"}}>{v}</div>
                   </div>
                 ))}
               </div>
