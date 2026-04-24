@@ -264,49 +264,243 @@
       </div>
     );
 
-    /* ── S5 온보딩 ── */
+    /* ── 온보딩 배경: 수강생관리 ── */
+    const BgSugang = () => (
+      <div style={{ width:"100%", height:"100%", background:LIGHT_BG, pointerEvents:"none", userSelect:"none" }}>
+        <div style={{ background:DARK_HEADER, height:40, display:"flex", alignItems:"center", padding:"0 16px", gap:12 }}>
+          <Logo small /><span style={{ color:"#aaa", fontSize:11, borderLeft:"1px solid #444", paddingLeft:10 }}>📚 교글베그학원</span>
+          <span style={{ color:"#ccc", fontSize:11 }}>채교준 (200001)님</span>
+          <div style={{ marginLeft:"auto", display:"flex", gap:10 }}><span style={{ color:"#aaa", fontSize:10 }}>🏠 메인 홈</span><span style={{ color:"#aaa", fontSize:10 }}>⚙️ 환경설정</span><span style={{ color:"#aaa", fontSize:10 }}>🔓 로그아웃</span></div>
+        </div>
+        <div style={{ background:"#fff", borderBottom:"1px solid #e5e5e5", display:"flex", padding:"0 8px", overflowX:"auto" }}>
+          {["수강생관리","수납관리","반관리","수업관리","상담관리","차량관리","직원관리","장부관리","경영현황","AI학원경영","급여관리","노무관리","회계관리"].map((m,i)=>(
+            <div key={m} style={{ padding:"7px 10px", fontSize:10, color:i===0?ORANGE:"#555", borderBottom:i===0?`2px solid ${ORANGE}`:"2px solid transparent", whiteSpace:"nowrap", flexShrink:0 }}>{m}</div>
+          ))}
+        </div>
+        <div style={{ display:"flex", height:"calc(100vh - 80px)" }}>
+          <div style={{ width:130, background:"#fff", borderRight:"1px solid #e5e5e5", padding:"8px 0" }}>
+            <div style={{ background:ORANGE, color:"#fff", padding:"8px 12px", fontSize:12, fontWeight:700, margin:"0 8px 8px", borderRadius:4 }}>수강생관리</div>
+            <div style={{ padding:"6px 16px", fontSize:11, color:"#555", fontWeight:700 }}>▾ 수강생관리</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#E8445A", fontWeight:600 }}>▸ 반별 수강생</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#888" }}>▸ 수강생현황</div>
+            <div style={{ padding:"6px 16px", fontSize:11, color:"#555", fontWeight:700 }}>▾ 등하원관리</div>
+            <div style={{ padding:"6px 16px", fontSize:11, color:"#555", fontWeight:700 }}>▾ 학원공지</div>
+          </div>
+          <div style={{ flex:1, padding:12 }}>
+            <div style={{ background:"#fff", borderRadius:6, border:"1px solid #e5e5e5", padding:12 }}>
+              <div style={{ display:"flex", gap:6, marginBottom:10, flexWrap:"wrap" }}>
+                {["전체","재원","예비","퇴원"].map(t=><div key={t} style={{ padding:"3px 10px", border:"1px solid #ddd", borderRadius:4, fontSize:10, color:"#555", background:t==="전체"?ORANGE:"#fff", color:t==="전체"?"#fff":"#555" }}>{t}</div>)}
+                <div style={{ marginLeft:"auto", background:TEAL, color:"#fff", padding:"3px 10px", borderRadius:4, fontSize:10 }}>+ 수강생등록</div>
+              </div>
+              <table style={{ width:"100%", borderCollapse:"collapse", fontSize:11 }}>
+                <thead><tr style={{ borderBottom:"2px solid #ddd" }}>{["번호","이름","반명","수납현황","연락처"].map(h=><th key={h} style={{ padding:"5px 6px", textAlign:"left", color:"#666", fontWeight:600 }}>{h}</th>)}</tr></thead>
+                <tbody>
+                  <tr style={{ borderBottom:"1px solid #f0f0f0" }}>
+                    <td style={{ padding:"5px 6px" }}>1</td>
+                    <td style={{ padding:"5px 6px", color:"#378ADD" }}>수강생01</td>
+                    <td style={{ padding:"5px 6px", fontSize:9 }}>중등부 &gt; 수학A</td>
+                    <td style={{ padding:"5px 6px", color:"#E8445A", fontWeight:700 }}>미납</td>
+                    <td style={{ padding:"5px 6px", color:"#888" }}>010-0000-0000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    /* ── 온보딩 배경: 반관리 ── */
+    const BgBan = () => (
+      <div style={{ width:"100%", height:"100%", background:LIGHT_BG, pointerEvents:"none", userSelect:"none" }}>
+        <div style={{ background:DARK_HEADER, height:40, display:"flex", alignItems:"center", padding:"0 16px", gap:12 }}>
+          <Logo small /><span style={{ color:"#aaa", fontSize:11, borderLeft:"1px solid #444", paddingLeft:10 }}>📚 교글베그학원</span>
+          <span style={{ color:"#ccc", fontSize:11 }}>채교준 (200001)님</span>
+          <div style={{ marginLeft:"auto", display:"flex", gap:10 }}><span style={{ color:"#aaa", fontSize:10 }}>🏠 메인 홈</span><span style={{ color:"#aaa", fontSize:10 }}>🔓 로그아웃</span></div>
+        </div>
+        <div style={{ background:"#fff", borderBottom:"1px solid #e5e5e5", display:"flex", padding:"0 8px" }}>
+          {["수강생관리","수납관리","반관리","수업관리","상담관리","차량관리","직원관리","장부관리","경영현황","AI학원경영"].map((m,i)=>(
+            <div key={m} style={{ padding:"7px 10px", fontSize:10, color:i===2?ORANGE:"#555", borderBottom:i===2?`2px solid ${ORANGE}`:"2px solid transparent", whiteSpace:"nowrap", flexShrink:0 }}>{m}</div>
+          ))}
+        </div>
+        <div style={{ display:"flex", height:"calc(100vh - 80px)" }}>
+          <div style={{ width:130, background:"#fff", borderRight:"1px solid #e5e5e5", padding:"8px 0" }}>
+            <div style={{ background:ORANGE, color:"#fff", padding:"8px 12px", fontSize:12, fontWeight:700, margin:"0 8px 8px", borderRadius:4 }}>반관리</div>
+            <div style={{ padding:"6px 16px", fontSize:11, color:"#555", fontWeight:700 }}>▾ 반 관리</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#E8445A", fontWeight:600 }}>▸ 반 그룹</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#888" }}>▸ 반 현황</div>
+          </div>
+          <div style={{ flex:1, padding:16 }}>
+            <div style={{ fontSize:13, fontWeight:700, marginBottom:12, color:"#555" }}>🏠 반 그룹</div>
+            <div style={{ background:"#fff", borderRadius:6, border:"1px solid #e5e5e5", padding:16 }}>
+              <div style={{ display:"flex", gap:8, marginBottom:10, alignItems:"center" }}>
+                <span style={{ fontSize:11, color:"#666" }}>사용유무</span>
+                <div style={{ border:"1px solid #ddd", borderRadius:4, padding:"4px 20px 4px 8px", fontSize:11, color:"#555", background:"#fafafa" }}>사용</div>
+                <div style={{ marginLeft:"auto", background:TEAL, color:"#fff", padding:"4px 12px", borderRadius:4, fontSize:11 }}>반그룹 등록</div>
+              </div>
+              <table style={{ width:"100%", borderCollapse:"collapse", fontSize:11 }}>
+                <thead><tr style={{ borderBottom:"2px solid #ddd" }}>{["출력순서","반그룹코드","반그룹명","사용유무"].map(h=><th key={h} style={{ padding:"6px 8px", textAlign:"left", color:"#666", fontWeight:600 }}>{h}</th>)}</tr></thead>
+                <tbody>
+                  <tr style={{ borderBottom:"1px solid #f0f0f0" }}><td style={{ padding:"6px 8px" }}>1</td><td style={{ padding:"6px 8px", color:"#aaa" }}>GROUP00002</td><td style={{ padding:"6px 8px" }}>중등부</td><td style={{ padding:"6px 8px" }}>사용</td></tr>
+                  <tr><td style={{ padding:"6px 8px" }}>2</td><td style={{ padding:"6px 8px", color:"#aaa" }}>GROUP00003</td><td style={{ padding:"6px 8px" }}>대학입시부</td><td style={{ padding:"6px 8px" }}>사용</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    /* ── 온보딩 배경: 수납관리 ── */
+    const BgSunap = () => (
+      <div style={{ width:"100%", height:"100%", background:LIGHT_BG, pointerEvents:"none", userSelect:"none" }}>
+        <div style={{ background:DARK_HEADER, height:40, display:"flex", alignItems:"center", padding:"0 16px", gap:12 }}>
+          <Logo small /><span style={{ color:"#aaa", fontSize:11, borderLeft:"1px solid #444", paddingLeft:10 }}>📚 00학원</span>
+          <span style={{ color:"#ccc", fontSize:11 }}>홍길동 (200001)님</span>
+          <div style={{ marginLeft:"auto", display:"flex", gap:10 }}><span style={{ color:"#aaa", fontSize:10 }}>🏠 메인 홈</span><span style={{ color:"#aaa", fontSize:10 }}>🔓 로그아웃</span></div>
+        </div>
+        <div style={{ background:"#fff", borderBottom:"1px solid #e5e5e5", display:"flex", padding:"0 8px" }}>
+          {["수강생관리","수납관리","반관리","수업관리","상담관리","차량관리"].map((m,i)=>(
+            <div key={m} style={{ padding:"7px 10px", fontSize:10, color:i===1?ORANGE:"#555", borderBottom:i===1?`2px solid ${ORANGE}`:"2px solid transparent", whiteSpace:"nowrap", flexShrink:0 }}>{m}</div>
+          ))}
+        </div>
+        <div style={{ display:"flex", height:"calc(100vh - 80px)" }}>
+          <div style={{ width:130, background:"#fff", borderRight:"1px solid #e5e5e5", padding:"8px 0" }}>
+            <div style={{ background:ORANGE, color:"#fff", padding:"8px 12px", fontSize:12, fontWeight:700, margin:"0 8px 8px", borderRadius:4 }}>수납관리</div>
+            <div style={{ padding:"6px 16px", fontSize:11, color:"#555", fontWeight:700 }}>▾ 수납관리</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#E8445A", fontWeight:600 }}>▸ 일괄청구</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#888" }}>▸ 청구/수납내역</div>
+            <div style={{ padding:"4px 24px", fontSize:11, color:"#888" }}>▸ 수납현황</div>
+          </div>
+          <div style={{ flex:1, padding:12 }}>
+            <div style={{ background:"#fff", borderRadius:6, border:"1px solid #e5e5e5", padding:12 }}>
+              <div style={{ fontSize:12, fontWeight:700, marginBottom:8, borderBottom:"1px solid #e5e5e5", paddingBottom:6 }}>■ 수납내역</div>
+              <table style={{ width:"100%", borderCollapse:"collapse", fontSize:10 }}>
+                <thead><tr style={{ borderBottom:"1px solid #ddd" }}>{["수강월","반명","항목","청구액","상태","수납액","미납액"].map(h=><th key={h} style={{ padding:"4px 6px", textAlign:"left", color:"#666", fontWeight:600 }}>{h}</th>)}</tr></thead>
+                <tbody>
+                  <tr><td style={{ padding:"4px 6px" }}>2026-01</td><td style={{ padding:"4px 6px", fontSize:9 }}>중등부 &gt; 수학A</td><td style={{ padding:"4px 6px" }}>수강료01</td><td style={{ padding:"4px 6px" }}>1,000</td><td style={{ padding:"4px 6px", color:"#378ADD" }}>미납</td><td style={{ padding:"4px 6px" }}></td><td style={{ padding:"4px 6px", color:"#E8445A" }}>1,000</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    /* ── S5 온보딩 튜토리얼 (툴팁 단계별) ── */
     const S5 = ({ go }) => {
       const [step, setStep] = useState(0);
-      const [done, setDone] = useState([false,false,false]);
-      const missions = [
-        { icon:"👤", title:"미션 1", desc:"원생 1명 등록하기", detail:"이름 + 연락처만으로 완료!" },
-        { icon:"📚", title:"미션 2", desc:"반 만들고 원생 배정", detail:"수업 그룹을 구성해보세요" },
-        { icon:"✅", title:"미션 3", desc:"출결 또는 수납 체험", detail:"핵심 기능을 직접 경험해보세요" },
-      ];
-      const complete = () => { const n=[...done]; n[step]=true; setDone(n); if(step<2) setStep(step+1); };
-      const allDone = done.every(Boolean);
-      return (
-        <div style={{ minHeight:"100vh", background:"rgba(30,34,53,0.88)", display:"flex", alignItems:"center", justifyContent:"center", padding:16 }}>
-          <div style={{ background:"#fff", borderRadius:12, width:"100%", maxWidth:480, padding:28, boxShadow:"0 20px 60px rgba(0,0,0,0.3)" }}>
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
-              <div><div style={{ fontSize:16, fontWeight:700 }}>🚀 빠른 시작 가이드</div><div style={{ fontSize:11, color:"#888", marginTop:2 }}>3가지 미션을 완료하면 핵심 기능을 바로 익힐 수 있어요</div></div>
-              <div style={{ fontSize:12, fontWeight:700, color:ORANGE }}>{done.filter(Boolean).length} / 3 완료</div>
-            </div>
-            <div style={{ background:"#f0f0f0", borderRadius:8, height:6, marginBottom:18, overflow:"hidden" }}>
-              <div style={{ height:6, background:ORANGE, borderRadius:8, width:`${(done.filter(Boolean).length/3)*100}%`, transition:"width 0.4s" }} />
-            </div>
-            {missions.map((m,i) => (
-              <div key={i} onClick={()=>setStep(i)} style={{ border:`2px solid ${step===i?ORANGE:done[i]?TEAL:"#e5e5e5"}`, borderRadius:8, padding:"12px 14px", marginBottom:8, cursor:"pointer", background:done[i]?"#F0FBF7":step===i?"#FFF9F3":"#fff", display:"flex", alignItems:"center", gap:12 }}>
-                <div style={{ fontSize:22 }}>{m.icon}</div>
-                <div style={{ flex:1 }}>
-                  <div style={{ fontSize:10, color:"#888" }}>{m.title}</div>
-                  <div style={{ fontSize:13, fontWeight:600 }}>{m.desc}</div>
-                  <div style={{ fontSize:10, color:"#aaa" }}>{m.detail}</div>
-                </div>
-                <div style={{ width:22, height:22, borderRadius:"50%", background:done[i]?TEAL:"#e0e0e0", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                  {done[i]&&<span style={{ color:"#fff", fontSize:11 }}>✓</span>}
-                </div>
+      const next = () => { if(step < 4) setStep(step+1); else go(5); };
+
+      const Tooltip = ({ top, left, right, bottom, width, arrow, children }) => (
+        <div style={{ position:"absolute", top, left, right, bottom, width:width||280, background:"#fff", borderRadius:10, padding:"16px 18px", boxShadow:"0 8px 32px rgba(0,0,0,0.18)", zIndex:20 }}>
+          {arrow==="top" && <div style={{ position:"absolute", top:-10, left:24, width:0, height:0, borderLeft:"10px solid transparent", borderRight:"10px solid transparent", borderBottom:"10px solid #fff" }} />}
+          {arrow==="top-right" && <div style={{ position:"absolute", top:-10, right:24, width:0, height:0, borderLeft:"10px solid transparent", borderRight:"10px solid transparent", borderBottom:"10px solid #fff" }} />}
+          {children}
+        </div>
+      );
+
+      // STEP 0: 인트로 모달
+      if(step===0) return (
+        <div style={{ position:"relative", minHeight:"100vh", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, opacity:0.3 }}><BgSugang /></div>
+          <div style={{ position:"absolute", inset:0, background:"rgba(20,24,40,0.55)" }} />
+          <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", zIndex:10 }}>
+            <div onClick={e=>e.stopPropagation()} style={{ background:"#fff", borderRadius:16, width:360, padding:"32px 28px", textAlign:"center", boxShadow:"0 20px 60px rgba(0,0,0,0.3)" }}>
+              <div style={{ fontSize:18, fontWeight:700, marginBottom:6 }}>빠른 시작 가이드</div>
+              <div style={{ fontSize:12, color:"#888", marginBottom:28 }}>3가지 미션을 완료하면 핵심 기능을 바로 익힐 수 있어요</div>
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+                {[["미션 1","원생 1명 등록하기"],["미션 2","반 만들고 원생 배정"],["미션 3","수납 체험"]].map(([m,t],i)=>(
+                  <div key={i} style={{ display:"flex", flexDirection:"column", alignItems:"center" }}>
+                    <div style={{ fontSize:11, color:"#E8445A", fontWeight:700 }}>{m}</div>
+                    <div style={{ fontSize:16, fontWeight:700, marginBottom:i<2?2:0 }}>{t}</div>
+                    {i<2 && <div style={{ width:1, height:20, background:"#ddd", margin:"4px 0" }} />}
+                  </div>
+                ))}
               </div>
-            ))}
-            <div style={{ display:"flex", gap:8, marginTop:16 }}>
-              {!allDone && <button onClick={complete} style={{ flex:1, padding:"11px 0", background:ORANGE, color:"#fff", border:"none", borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>미션 완료 ✓</button>}
-              <button onClick={()=>go(5)} style={{ flex:allDone?2:1, padding:"11px 0", background:allDone?TEAL:"#f0f0f0", color:allDone?"#fff":"#888", border:"none", borderRadius:6, fontSize:13, fontWeight:700, cursor:"pointer" }}>
-                {allDone?"🎉 대시보드로 이동":"나중에 할게요"}
-              </button>
+              <div style={{ display:"flex", gap:10, marginTop:28 }}>
+                <button onClick={next} style={{ flex:1, padding:"12px 0", background:ORANGE, color:"#fff", border:"none", borderRadius:8, fontSize:14, fontWeight:700, cursor:"pointer" }}>가이드 시작하기</button>
+                <button onClick={()=>go(5)} style={{ flex:1, padding:"12px 0", background:"#f0f0f0", color:"#888", border:"none", borderRadius:8, fontSize:14, cursor:"pointer" }}>건너뛰기</button>
+              </div>
             </div>
           </div>
         </div>
       );
+
+      // STEP 1: 수강생관리 설명
+      if(step===1) return (
+        <div onClick={next} style={{ position:"relative", minHeight:"100vh", cursor:"pointer", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, opacity:0.35 }}><BgSugang /></div>
+          <div style={{ position:"absolute", inset:0, background:"rgba(20,24,40,0.5)" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:10 }}>
+            <Tooltip top={88} left={140} width={320} arrow="top">
+              <div style={{ fontSize:14, fontWeight:700, marginBottom:8, lineHeight:1.5 }}>수강생 관리에서 학생을 등록하고 관리할 수 있습니다.</div>
+              <div style={{ fontSize:13, color:"#555" }}>학생 등록을 먼저 해볼까요?</div>
+            </Tooltip>
+            <div style={{ position:"absolute", bottom:52, right:24, background:"rgba(255,255,255,0.15)", color:"#fff", padding:"8px 16px", borderRadius:20, fontSize:11 }}>화면을 클릭하면 다음으로 넘어갑니다</div>
+          </div>
+        </div>
+      );
+
+      // STEP 2: 학생 등록 폼 안내
+      if(step===2) return (
+        <div onClick={next} style={{ position:"relative", minHeight:"100vh", cursor:"pointer", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, opacity:0.25 }}><BgSugang /></div>
+          <div style={{ position:"absolute", inset:0, background:"rgba(20,24,40,0.5)" }} />
+          <div style={{ position:"absolute", top:80, left:"50%", transform:"translateX(-50%)", width:"90%", maxWidth:700, background:"#fff", borderRadius:8, padding:20, zIndex:15, boxShadow:"0 4px 24px rgba(0,0,0,0.3)" }}>
+            <div style={{ fontSize:13, fontWeight:700, marginBottom:14, borderBottom:"1px solid #e5e5e5", paddingBottom:8 }}>■ 학생정보자료</div>
+            <div style={{ display:"grid", gridTemplateColumns:"80px 1fr 80px 1fr", gap:"8px 16px", fontSize:11 }}>
+              {[["수강생번호","미입력시 자동부여"],["상태",""],["성명",""],["생년월일","예) 901230"],["아이디",""],["비밀번호","신규 수강생 비밀번호는 생년월일입니다."],["입학일자",""],["주 결제방법","선택"],["학생 휴대폰","예) 010-1234-5678"],["집전화","예) 010-1234-5678"]].map(([l,p],i)=>(
+                <React.Fragment key={i}>
+                  <div style={{ color:"#666", padding:"5px 0" }}>{l}</div>
+                  <div style={{ border:"1px solid #ddd", borderRadius:3, padding:"5px 8px", color:"#aaa", fontSize:10, background:"#fafafa" }}>{p}</div>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+          <div style={{ position:"absolute", bottom:120, left:"50%", transform:"translateX(-50%)", width:380, background:"#fff", borderRadius:10, padding:"16px 20px", zIndex:20, boxShadow:"0 8px 32px rgba(0,0,0,0.2)" }}>
+            <div style={{ fontSize:14, fontWeight:700, marginBottom:6 }}>학생의 이름, 연락처만 입력하고 저장해 보세요.</div>
+            <div style={{ fontSize:12, color:"#666" }}>수강생번호는 자동생성되기 때문에 공백으로 두세요!</div>
+          </div>
+          <div style={{ position:"absolute", bottom:52, right:24, background:"rgba(255,255,255,0.15)", color:"#fff", padding:"8px 16px", borderRadius:20, fontSize:11 }}>화면을 클릭하면 다음으로 넘어갑니다</div>
+        </div>
+      );
+
+      // STEP 3: 반관리 안내
+      if(step===3) return (
+        <div onClick={next} style={{ position:"relative", minHeight:"100vh", cursor:"pointer", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, opacity:0.35 }}><BgBan /></div>
+          <div style={{ position:"absolute", inset:0, background:"rgba(20,24,40,0.5)" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:10 }}>
+            <Tooltip top={88} left={300} width={340} arrow="top">
+              <div style={{ fontSize:14, fontWeight:700, lineHeight:1.6 }}>반 관리로 이동해서 반을 생성하고,<br/>수강생을 배정해 보세요!</div>
+            </Tooltip>
+            <div style={{ position:"absolute", bottom:52, right:24, background:"rgba(255,255,255,0.15)", color:"#fff", padding:"8px 16px", borderRadius:20, fontSize:11 }}>화면을 클릭하면 다음으로 넘어갑니다</div>
+          </div>
+        </div>
+      );
+
+      // STEP 4: 수납관리 안내
+      if(step===4) return (
+        <div onClick={next} style={{ position:"relative", minHeight:"100vh", cursor:"pointer", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, opacity:0.35 }}><BgSunap /></div>
+          <div style={{ position:"absolute", inset:0, background:"rgba(20,24,40,0.5)" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:10 }}>
+            <Tooltip top={88} left={200} width={360} arrow="top">
+              <div style={{ fontSize:14, fontWeight:700, marginBottom:6 }}>수납관리에서 수납을 진행해 보세요!</div>
+              <div style={{ fontSize:12, color:"#555", lineHeight:1.6 }}>결제내역에서 결제취소 및 수기등록으로 수정할 수 있습니다.</div>
+            </Tooltip>
+            <div style={{ position:"absolute", bottom:60, left:"50%", transform:"translateX(-50%)" }}>
+              <button onClick={next} style={{ background:ORANGE, color:"#fff", border:"none", borderRadius:8, padding:"12px 32px", fontSize:14, fontWeight:700, cursor:"pointer", boxShadow:"0 4px 16px rgba(245,132,31,0.4)" }}>
+                🎉 튜토리얼 완료 — 대시보드로 이동
+              </button>
+            </div>
+            <div style={{ position:"absolute", bottom:52, right:24, background:"rgba(255,255,255,0.15)", color:"#fff", padding:"8px 16px", borderRadius:20, fontSize:11 }}>화면을 클릭하면 다음으로 넘어갑니다</div>
+          </div>
+        </div>
+      );
+
+      return null;
     };
 
     /* ── S6 체험 대시보드 ── */
