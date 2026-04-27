@@ -33,6 +33,7 @@
       {id:8,name:"두뇌개발학원",owner:"오두뇌",phone:"010-8901-2345",region:"서울",joinDate:"2026-04-16",status:"만료",trial_d:0,pay:null,terminal:null,login:"7일전",route:"기타",routeDetail:null},
       {id:9,name:"글로벌영어학원",owner:"서글로",phone:"010-9012-3456",region:"부산",joinDate:"2026-04-15",status:"정식",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"오늘",route:"검색",routeDetail:null},
       {id:10,name:"탑수학학원",owner:"윤탑수",phone:"010-0123-4567",region:"대전",joinDate:"2026-04-14",status:"이탈",trial_d:null,pay:null,terminal:null,login:"14일전",route:"연합회",routeDetail:"대전"},
+      {id:11,name:"별빛미술학원",owner:"강별빛",phone:"010-1357-2468",region:"대구",joinDate:"2026-02-01",status:"휴면",trial_d:null,pay:"심사완료",terminal:"설치완료",login:"65일전",route:"연합회",routeDetail:"대구"},
     ];
     const PAY_APPS = [
       {id:1,academy:"한빛국어학원",owner:"박한빛",phone:"010-4567-8901",region:"대구",applyDate:"2026-04-20",status:"심사중"},
@@ -58,6 +59,7 @@
       if(s==="정식") return <Badge label="정식" color={TEAL}/>;
       if(s==="체험"){const c=d<=1?RED:d<=3?ORANGE:GREEN;return <Badge label={`체험 D-${d}`} color={c}/>;}
       if(s==="만료") return <Badge label="만료" color="#888"/>;
+      if(s==="휴면") return <Badge label="휴면" color="#7F77DD" bg="#F3F1FF"/>;
       if(s==="이탈") return <Badge label="이탈" color={RED} bg="#ffeeee"/>;
       return null;
     };
@@ -248,7 +250,7 @@
       const [routeFilter,setRouteFilter]=useState("전체");
       const [search,setSearch]=useState("");
       const [selected,setSelected]=useState(null);
-      const statusFilters=["전체","체험","정식","만료","이탈"];
+      const statusFilters=["전체","체험","정식","만료","휴면","이탈"];
 
       const filtered=ACADEMIES.filter(a=>{
         const statusOk = filter==="전체" || a.status===filter;
@@ -266,8 +268,8 @@
         ? filtered.filter(a=>unionRegion==="전체"||a.routeDetail===unionRegion)
         : filtered;
 
-      const routeFilters=["전체","연합회","검색","SNS","지인추천","기타"];
-      const routeColors={"전체":"#555","연합회":"#7F77DD","검색":BLUE,"SNS":"#E91E8C","지인추천":GREEN,"기타":"#888"};
+      const routeFilters=["전체","연합회"];
+      const routeColors={"전체":"#555","연합회":"#7F77DD"};
 
       return (
         <div style={{padding:24}}>
