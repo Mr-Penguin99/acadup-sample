@@ -250,7 +250,7 @@
       const [routeFilter,setRouteFilter]=useState("전체");
       const [search,setSearch]=useState("");
       const [selected,setSelected]=useState(null);
-      const statusFilters=["전체","체험","정식","만료","휴면","이탈"];
+      const statusFilters=["전체","체험","만료","정식","휴면","이탈"];
 
       const filtered=ACADEMIES.filter(a=>{
         const statusOk = filter==="전체" || a.status===filter;
