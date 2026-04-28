@@ -1001,7 +1001,11 @@
                 ))}
               </div>
             )}
-            <button onClick={()=>result&&go(11)} style={{ width:"100%", padding:"12px 0", background:result?"#D85A30":"#ccc", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:result?"pointer":"not-allowed" }}>단말기 신청 접수하기</button>
+            {result && result.startsWith("block") ? (
+              <button onClick={()=>go(11)} style={{ width:"100%", padding:"12px 0", background:"#555", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:"pointer" }}>대시보드로 이동하기</button>
+            ) : (
+              <button onClick={()=>result&&go(11)} style={{ width:"100%", padding:"12px 0", background:result?"#D85A30":"#ccc", color:"#fff", border:"none", borderRadius:6, fontSize:14, fontWeight:700, cursor:result?"pointer":"not-allowed" }}>단말기 신청 접수하기</button>
+            )}
             <div style={{ textAlign:"center", marginTop:14 }}>
               <span onClick={()=>go(11)} style={{ fontSize:12, color:"#aaa", cursor:"pointer", textDecoration:"underline" }}>건너뛰기 — 대시보드로 바로 이동 →</span>
             </div>
